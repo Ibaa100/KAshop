@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="KAshop.BLL/KAshop.BLL.csproj" />
+  <Project Path="KAshop.DAL/KAshop.DAL.csproj" />
+  <Project Path="KAshop.PL/KAshop.PL.csproj" />
+</Solution>
