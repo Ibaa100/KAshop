@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
-
 namespace KAshop.PL
 {
     public class Program
@@ -22,11 +21,10 @@ namespace KAshop.PL
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly("KAshop.PL"));
-
-        });
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepositry>();
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepositry>();           
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddLocalization(options =>options.ResourcesPath ="");
             const string defaultCulture = "en";
