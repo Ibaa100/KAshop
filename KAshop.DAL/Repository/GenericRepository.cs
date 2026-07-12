@@ -22,6 +22,18 @@ namespace KAshop.DAL.Repository
             await _context.SaveChangesAsync();
             return request;
         }
+        public async Task<T> UpdateAsync(T request)
+        {
+            _context.Set<T>().Update(request);
+            await _context.SaveChangesAsync();
+            return request;
+        }
+        public async Task<bool> DeleteAsync(T entity)
+        {
+            _context.Remove(entity);
+            var affected = await _context.SaveChangesAsync();
+            return affected > 0;
+        }
 
         public async Task<List<T>> GetAllAsync(string [] ? includes = null )
         {
@@ -51,5 +63,7 @@ namespace KAshop.DAL.Repository
             return await query.FirstOrDefaultAsync(filter);
 
         }
+
+       
     }
 }

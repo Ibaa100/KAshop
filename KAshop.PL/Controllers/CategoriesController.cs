@@ -39,11 +39,26 @@ namespace KAshop.PL.Controllers
             return Ok();
 
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] CategoryRequest request)
+        {
+            var response = await _categoryService.UpdateCategory(id, request);
+
+            return Ok(response);
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var category = await _categoryService.GetCategory(c =>c.Id ==id);
             return Ok(category);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete (int id)
+        {
+            var deleted = await _categoryService.DeletedCategory(id);
+            if (!deleted)
+                return BadRequest();
+            return Ok();
         }
     }
 }
